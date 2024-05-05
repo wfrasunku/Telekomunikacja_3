@@ -15,7 +15,6 @@ def Server(encoding, the_tree):
     bytes_node = bytes(serialized_data)
 
     clientsocket.sendall(bytes_node)
-
     clientsocket.close()
 
 

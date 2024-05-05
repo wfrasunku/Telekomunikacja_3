@@ -12,28 +12,10 @@ def main():
 
     if args.mode == "server":
         encoding, the_tree = HuffmanEncoding(ReadFromFile(input("Wczytaj plik (.txt): ")))
-
         Server(encoding, the_tree)
     elif args.mode == "client":
         message, key = Client()
-        print(message)
-        print(key)
-        text = HuffmanDecoding(message, key)
-        SaveToFile(input("\nZapisz plik (.txt): "), text)
-
-    # encoding, the_tree = HuffmanEncoding(ReadFromFile(input("Wczytaj plik (.txt): ")))
-    # size = sys.getsizeof(the_tree)
-    #
-    # print("Size of the node object:", size * 8, "bits")
-    # print("\nEncoded output:")
-    # print(encoding)
-    #
-    # print("\nTree output:")
-    # print(the_tree)
-    # # SaveToFile("EncodedOutput.txt", encoding)
-    # print("\nDecoded Output:")
-    # print(HuffmanDecoding(encoding, the_tree))
-    # SaveToFile(input("\nZapisz plik (.txt): "), HuffmanDecoding(encoding, the_tree))
+        SaveToFile(input("\nZapisz plik (.txt): "), HuffmanDecoding(message, key))
 
 
 if __name__ == "__main__":

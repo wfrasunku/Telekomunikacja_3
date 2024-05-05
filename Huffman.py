@@ -5,9 +5,9 @@ from NodesClass import Nodes
 def HuffmanEncoding(the_data):
     symbolWithProbs = CalculateFrequency(the_data)
     the_symbols = symbolWithProbs.keys()
-    the_frequencies = symbolWithProbs.values()
-    print("symbols: ", the_symbols)
-    print("frequencies: ", the_frequencies)
+    #the_frequencies = symbolWithProbs.values()
+    #print("symbols: ", the_symbols)
+    #print("frequencies: ", the_frequencies)
 
     the_nodes = []
 
@@ -30,8 +30,8 @@ def HuffmanEncoding(the_data):
         the_nodes.append(newNode)
 
     huffmanEncoding = CalculateCodes(the_nodes[0])
-    print("symbols with codes", huffmanEncoding)
-    CompressionShowcase(the_data, huffmanEncoding)
+    #print("symbols with codes", huffmanEncoding)
+    #CompressionShowcase(the_data, huffmanEncoding)
     encodedOutput = OutputEncoded(the_data, huffmanEncoding)
     return encodedOutput, the_nodes[0]
 
