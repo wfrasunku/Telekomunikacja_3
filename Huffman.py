@@ -1,5 +1,5 @@
 from Huffman_helpers import CalculateFrequency, CompressionShowcase, CalculateCodes, OutputEncoded
-from nodes_class import Nodes
+from NodesClass import Nodes
 
 
 def HuffmanEncoding(the_data):
@@ -40,9 +40,9 @@ def HuffmanDecoding(encodedData, huffmanTree):
     treeHead = huffmanTree
     decodedOutput = []
     for x in encodedData:
-        if x == '1':
+        if x == 1:
             huffmanTree = huffmanTree.right
-        elif x == '0':
+        elif x == 0:
             huffmanTree = huffmanTree.left
         try:
             if huffmanTree.left.symbol == None and huffmanTree.right.symbol == None:
@@ -51,5 +51,5 @@ def HuffmanDecoding(encodedData, huffmanTree):
             decodedOutput.append(huffmanTree.symbol)
             huffmanTree = treeHead
 
-    string = ''.join([str(item) for item in decodedOutput])
+    string = "".join([str(item) for item in decodedOutput])
     return string

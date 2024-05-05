@@ -4,4 +4,4 @@ class Nodes:
         self.symbol = symbol
         self.left = left
         self.right = right
-        self.code = ''
+        self.code = ""
