@@ -13,21 +13,6 @@ def main():
     if args.mode == "server":
         encoding, the_tree = HuffmanEncoding(ReadFromFile(input("Wczytaj plik (.txt): ")))
 
-        print("Struktura drzewa:")
-        print_tree(the_tree)
-
-        print("\nEncoded output:")
-        print(encoding)
-
-        print("\nTree output:")
-        # Serializacja obiektu do postaci bajtowej
-        serialized_node = pickle.dumps(the_tree)
-
-        # Konwersja na bajty
-        bytes_node = bytes(serialized_node)
-
-        print("Converted node to bytes:", bytes_node)
-
         Server(encoding, the_tree)
     elif args.mode == "client":
         message, key = Client()
@@ -53,10 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-def print_tree(node, level=0):
-    if node is not None:
-        print("  " * level + f"Symbol: {node.symbol}, Frequency: {node.frequency}, Code: {node.code}")
-        print_tree(node.left, level + 1)
-        print_tree(node.right, level + 1)
