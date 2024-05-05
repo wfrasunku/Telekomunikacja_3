@@ -1,4 +1,4 @@
-from Huffman_helpers import CalculateFrequency, CalculateCodes, OutputEncoded
+from Huffman_helpers import CalculateFrequency, CompressionShowcase, CalculateCodes, OutputEncoded
 from nodes_class import Nodes
 
 
@@ -31,6 +31,7 @@ def HuffmanEncoding(the_data):
 
     huffmanEncoding = CalculateCodes(the_nodes[0])
     print("symbols with codes", huffmanEncoding)
+    CompressionShowcase(the_data, huffmanEncoding)
     encodedOutput = OutputEncoded(the_data, huffmanEncoding)
     return encodedOutput, the_nodes[0]
 

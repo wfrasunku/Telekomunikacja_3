@@ -33,3 +33,13 @@ def OutputEncoded(the_data, coding):
     the_string = ''.join([str(item) for item in encodingOutput])
     return the_string
 
+
+def CompressionShowcase(the_data, coding):
+    beforeCompression = len(the_data) * 8
+    afterCompression = 0
+    the_symbols = coding.keys()
+    for symbol in the_symbols:
+        the_count = the_data.count(symbol)
+        afterCompression += the_count * len(coding[symbol])
+    print("Space usage before compression (in bits):", beforeCompression)
+    print("Space usage after compression (in bits):",  afterCompression)
