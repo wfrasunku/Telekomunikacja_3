@@ -1,21 +1,25 @@
-from Huffman import HuffmanEncoding, HuffmanDecoding
-from FileManipulation import ReadFromFile, SaveToFile
-from Sockets import Client, Server
+from huffman_algorithm import HuffmanEncoding, HuffmanDecoding
+from file_manipulation import ReadFromFile, SaveToFile
+from sockets import Client, Server
 import argparse
 import pickle
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Wybierz tryb: 'server' lub 'client'.")
-    parser.add_argument("mode", choices=["server", "client"], help="Tryb pracy: 'server' lub 'client'.")
+    parser = argparse.ArgumentParser(description="arg[1] - 'server/client' arg[2] - 'path of file'")
+    parser.add_argument("mode", choices=["server", "client"], help="'server' - sending, 'client' - receiving")
+    parser.add_argument("path", help="path of saved/received file")
     args = parser.parse_args()
 
     if args.mode == "server":
-        encoding, the_tree = HuffmanEncoding(ReadFromFile(input("Wczytaj plik (.txt): ")))
+        encoding, the_tree = HuffmanEncoding(ReadFromFile(args.path))
         Server(encoding, the_tree)
     elif args.mode == "client":
-        message, key = Client()
-        SaveToFile(input("\nZapisz plik (.txt): "), HuffmanDecoding(message, key))
+        try:
+            message, key = Client()
+        except Exception as e:
+            print(e)
+        SaveToFile(args.path, HuffmanDecoding(message, key))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
-from Huffman_helpers import CalculateFrequency, CompressionShowcase, CalculateCodes, OutputEncoded
-from NodesClass import Nodes
+from huffman_helpers import CalculateFrequency, CompressionShowcase, CalculateCodes, OutputEncoded
+from nodes_class import Nodes
 
 
 def HuffmanEncoding(the_data):
