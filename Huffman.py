@@ -40,9 +40,9 @@ def HuffmanDecoding(encodedData, huffmanTree):
     treeHead = huffmanTree
     decodedOutput = []
     for x in encodedData:
-        if x == 1:
+        if x == "1":
             huffmanTree = huffmanTree.right
-        elif x == 0:
+        elif x == "0":
             huffmanTree = huffmanTree.left
         try:
             if huffmanTree.left.symbol == None and huffmanTree.right.symbol == None:
