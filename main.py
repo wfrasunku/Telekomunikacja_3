@@ -1,10 +1,11 @@
 from Huffman import HuffmanEncoding, HuffmanDecoding
-from FileManipulation import ReadFromFile
+from FileManipulation import ReadFromFile, SaveToFile
 
-# the_data = "Zażółć gęślą jaźń"
-# print(the_data)
-encoding, the_tree = HuffmanEncoding(ReadFromFile())
-print("\nEncoded output:")
-print(encoding)
-print("\nDecoded Output:")
-print(HuffmanDecoding(encoding, the_tree))
+
+encoding, the_tree = HuffmanEncoding(ReadFromFile(input("Wczytaj plik (.txt): ")))
+# print("\nEncoded output:")
+# print(encoding)
+SaveToFile("EncodedOutput.txt", encoding)
+# print("\nDecoded Output:")
+# print(HuffmanDecoding(encoding, the_tree))
+SaveToFile(input("\nZapisz plik (.txt): "), HuffmanDecoding(encoding, the_tree))
