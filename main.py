@@ -2,7 +2,6 @@ from huffman_algorithm import HuffmanEncoding, HuffmanDecoding
 from file_manipulation import ReadFromFile, SaveToFile
 from sockets import Client, Server
 import argparse
-import pickle
 
 
 def main():
@@ -13,10 +12,10 @@ def main():
 
     if args.mode == "server":
         encoding, the_tree = HuffmanEncoding(ReadFromFile(args.path))
-        Server(encoding, the_tree, int(input("Podaj numer portu: ")))
+        Server(encoding, the_tree, input("Podaj adres hosta: "), int(input("Podaj numer portu: ")))
     elif args.mode == "client":
         try:
-            message, key = Client(int(input("Podaj numer portu: ")))
+            message, key = Client(input("Podaj adres hosta: "), int(input("Podaj numer portu: ")))
         except Exception as e:
             print(e)
         SaveToFile(args.path, HuffmanDecoding(message, key))
