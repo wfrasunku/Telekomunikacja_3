@@ -2,9 +2,11 @@ import socket
 import pickle
 
 
-def Server(encoding, the_tree, host, port):
+def Server(encoding, the_tree):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((host, port))
+    ip_address = socket.gethostbyname(socket.gethostname())
+    print(f"Host Address: {ip_address}")
+    s.bind((socket.gethostname(), int(input("Insert port number: "))))
     print("Waiting for connection...")
     s.settimeout(30)
     s.listen(1)
