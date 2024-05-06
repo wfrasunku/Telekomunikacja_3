@@ -13,10 +13,10 @@ def main():
 
     if args.mode == "server":
         encoding, the_tree = HuffmanEncoding(ReadFromFile(args.path))
-        Server(encoding, the_tree)
+        Server(encoding, the_tree, int(input("Podaj numer portu: ")))
     elif args.mode == "client":
         try:
-            message, key = Client()
+            message, key = Client(int(input("Podaj numer portu: ")))
         except Exception as e:
             print(e)
         SaveToFile(args.path, HuffmanDecoding(message, key))

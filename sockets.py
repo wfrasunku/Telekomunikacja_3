@@ -1,10 +1,23 @@
 import socket
 import pickle
+import netifaces as ni
 
 
-def Server(encoding, the_tree):
+def get_local_ip():
+    interfaces = ni.interfaces()
+    for interface in interfaces:
+        try:
+            if ni.AF_INET in ni.ifaddresses(interface):
+                ip = ni.ifaddresses(interface)[ni.AF_INET][0]['addr']
+                return ip
+        except ValueError:
+            pass
+    raise Exception("Unable to get local IP address")
+
+
+def Server(encoding, the_tree, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind((socket.gethostname(), 2137))
+    s.bind((get_local_ip(), port))
     print("Waiting for connection...")
     s.settimeout(30)
     s.listen(1)
@@ -27,10 +40,10 @@ def Server(encoding, the_tree):
     print("File sent!")
 
 
-def Client():
+def Client(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        s.connect((socket.gethostname(), 2137))
+        s.connect((get_local_ip(), port))
         print("Connected with server!")
     except ConnectionRefusedError:
         raise Exception("Cannot connect with server!")
